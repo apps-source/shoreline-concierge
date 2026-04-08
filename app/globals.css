@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --shoreline-accent: #0e7ea6;
+  --shoreline-sand: #f7efe6;
+  --shoreline-dark: #042028;
+  color-scheme: light dark;
+}
+
+html,body,#root{
+  height:100%;
+}
+
+body{
+  background-color: #ffffff;
+  color: #1f2937;
+  line-height: 1.7;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+body{
+  background: radial-gradient(circle at 10% 20%, #f5fbff 0, #ffffff 40%), radial-gradient(circle at 90% 10%, #fff4e7 0, #ffffff 35%), #ffffff;
+}
+
+.container{
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@layer components {
+  .card{
+    background-color: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e2e8f0;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    color: #e5eef5;
+    background:
+      radial-gradient(circle at 10% 20%, rgba(14, 126, 166, 0.18) 0, rgba(4, 32, 40, 0.94) 42%),
+      radial-gradient(circle at 90% 10%, rgba(126, 89, 14, 0.14) 0, rgba(3, 12, 17, 0.96) 36%),
+      #061117;
+  }
+
+  header,
+  footer {
+    background-color: rgba(7, 19, 26, 0.88) !important;
+    border-color: rgba(148, 163, 184, 0.16) !important;
+    backdrop-filter: blur(12px);
+  }
+
+  .bg-white,
+  .from-white,
+  .to-white,
+  .via-white {
+    background-color: rgba(10, 23, 31, 0.82) !important;
+  }
+
+  .bg-slate-50,
+  .bg-ocean-50,
+  .bg-sand-50,
+  .from-ocean-50,
+  .to-sand-50,
+  .via-white {
+    background-image: none !important;
+    background-color: rgba(11, 26, 36, 0.82) !important;
+  }
+
+  .text-slate-900,
+  .text-slate-800,
+  .text-slate-700 {
+    color: #f3f7fb !important;
+  }
+
+  .text-slate-600,
+  .text-slate-500 {
+    color: #b5c7d6 !important;
+  }
+
+  .text-emerald-800,
+  .text-emerald-900,
+  .text-ocean-700 {
+    color: #7ddbd0 !important;
+  }
+
+  .border-slate-100,
+  .border-slate-200,
+  .border-white,
+  .ring-slate-100,
+  .ring-white,
+  .ring-emerald-50 {
+    border-color: rgba(148, 163, 184, 0.16) !important;
+    --tw-ring-color: rgba(148, 163, 184, 0.12) !important;
+  }
+
+  .shadow-sm,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl {
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.34) !important;
+  }
+
+  .card {
+    background-color: rgba(10, 23, 31, 0.82);
+    border-color: rgba(148, 163, 184, 0.16);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
+  }
+}

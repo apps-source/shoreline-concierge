@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://shorelineconcierge.travel/sitemap.xml

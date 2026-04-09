@@ -7,16 +7,24 @@ function makeSlug(input: string) {
     .replace(/^-+|-+$/g, '')
 }
 
+function normalizeImageUrl(url?: string): string | undefined {
+  if (!url || typeof url !== 'string') return undefined
+  const trimmed = url.trim()
+  if (!trimmed) return undefined
+  if (trimmed.startsWith('//')) return `https:${trimmed}`
+  return trimmed
+}
+
 function pickImageUrl(image: any): string | undefined {
   if (!image) return undefined
-  if (typeof image === 'string') return image
-  if (typeof image?.url === 'string') return image.url
-  if (typeof image?.link === 'string') return image.link
+  if (typeof image === 'string') return normalizeImageUrl(image)
+  if (typeof image?.url === 'string') return normalizeImageUrl(image.url)
+  if (typeof image?.link === 'string') return normalizeImageUrl(image.link)
   if (Array.isArray(image?.variants) && image.variants.length) {
     const variants = image.variants
       .filter((v: any) => typeof v?.url === 'string')
       .sort((a: any, b: any) => (b?.width || 0) - (a?.width || 0))
-    return variants[0]?.url
+    return normalizeImageUrl(variants[0]?.url)
   }
   return undefined
 }

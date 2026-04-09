@@ -36,6 +36,7 @@ export default function ExperienceCard({
   const hasReviews = typeof rating === 'number'
   const displayDuration = typeof duration === 'string' || typeof duration === 'number' ? duration : null
   const visual = imageUrl || image
+  const isRemoteVisual = typeof visual === 'string' && /^https?:\/\//i.test(visual)
   const safeSlug =
     (slug || '')
       .toString()
@@ -58,13 +59,23 @@ export default function ExperienceCard({
         <div className="relative h-48 overflow-hidden">
           {visual ? (
             <>
-              <Image
-                src={visual}
-                alt={title}
-                fill
-                className="object-cover transition duration-500 group-hover:scale-105"
-                sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-              />
+              {isRemoteVisual ? (
+                <img
+                  src={visual}
+                  alt={title}
+                  className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <Image
+                  src={visual}
+                  alt={title}
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                  sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" aria-hidden="true" />
             </>
           ) : (

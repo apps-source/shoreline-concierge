@@ -55,6 +55,7 @@ export default async function ExperienceDetail({ params, searchParams }: Props){
   }
 
   const imageUrl = exp.imageUrl || exp.image
+  const isRemoteImage = typeof imageUrl === 'string' && /^https?:\/\//i.test(imageUrl)
   const duration = asDurationText(exp.duration)
   const hasRating = typeof exp.rating === 'number'
   const hasReviews = typeof exp.reviews === 'number'
@@ -70,7 +71,17 @@ export default async function ExperienceDetail({ params, searchParams }: Props){
           <div className="space-y-4">
             {imageUrl ? (
               <div className="relative h-72 overflow-hidden rounded-2xl ring-1 ring-white/70 shadow-md">
-                <Image src={imageUrl} alt={exp.title} fill className="object-cover" sizes="(min-width: 768px) 60vw, 100vw" priority />
+                {isRemoteImage ? (
+                  <img
+                    src={imageUrl}
+                    alt={exp.title}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    loading="eager"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <Image src={imageUrl} alt={exp.title} fill className="object-cover" sizes="(min-width: 768px) 60vw, 100vw" priority />
+                )}
               </div>
             ) : null}
             <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold text-ocean-700 ring-1 ring-white/70">

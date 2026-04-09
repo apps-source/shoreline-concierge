@@ -827,13 +827,23 @@ export default function PlannerHero({ destinations, featured }: PlannerHeroProps
                 >
                   {match.imageUrl || match.image ? (
                     <div className="relative h-40 w-full overflow-hidden">
-                      <Image
-                        src={(match.imageUrl || match.image) as string}
-                        alt={match.title}
-                        fill
-                        className="object-cover"
-                        sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      />
+                      {/^https?:\/\//i.test((match.imageUrl || match.image) as string) ? (
+                        <img
+                          src={(match.imageUrl || match.image) as string}
+                          alt={match.title}
+                          className="absolute inset-0 h-full w-full object-cover"
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        <Image
+                          src={(match.imageUrl || match.image) as string}
+                          alt={match.title}
+                          fill
+                          className="object-cover"
+                          sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        />
+                      )}
                     </div>
                   ) : null}
                   <div className="space-y-3 px-4 py-4">

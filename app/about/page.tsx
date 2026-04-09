@@ -2,24 +2,24 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About Shoreline Concierge | Coastal Trips, Cruise Excursions, and Better Travel Planning',
+  title: 'About Shoreline Concierge | Beach Trips, Cruise Excursions, and Better Travel Planning',
   description:
-    'Learn why Shoreline Concierge was created and how it helps travelers find beach activities, excursions, cruise-friendly tours, and memorable coastal experiences more easily.',
+    'Learn why Shoreline Concierge was created and how it helps travelers find beach activities, excursions, cruise-friendly tours, and memorable beach experiences more easily.',
   alternates: {
     canonical: '/about'
   },
   openGraph: {
-    title: 'About Shoreline Concierge | Coastal Trips, Cruise Excursions, and Better Travel Planning',
+    title: 'About Shoreline Concierge | Beach Trips, Cruise Excursions, and Better Travel Planning',
     description:
-      'Learn why Shoreline Concierge was created and how it helps travelers find beach activities, excursions, cruise-friendly tours, and memorable coastal experiences more easily.',
+      'Learn why Shoreline Concierge was created and how it helps travelers find beach activities, excursions, cruise-friendly tours, and memorable beach experiences more easily.',
     url: '/about',
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Shoreline Concierge | Coastal Trips, Cruise Excursions, and Better Travel Planning',
+    title: 'About Shoreline Concierge | Beach Trips, Cruise Excursions, and Better Travel Planning',
     description:
-      'Learn why Shoreline Concierge was created and how it helps travelers find beach activities, excursions, cruise-friendly tours, and memorable coastal experiences more easily.'
+      'Learn why Shoreline Concierge was created and how it helps travelers find beach activities, excursions, cruise-friendly tours, and memorable beach experiences more easily.'
   }
 }
 
@@ -45,7 +45,7 @@ export default function About() {
             </p>
             <p>
               Shoreline focuses on beach activities, excursions, boat tours, dolphin cruises, fishing charters, water adventures,
-              romantic outings, and family-friendly experiences that can make a coastal trip feel more memorable.
+              romantic outings, and family-friendly experiences that can make a beach trip feel more memorable.
             </p>
             <p>
               Instead of bouncing between scattered tabs and listings, travelers can use Shoreline to search destinations, compare
@@ -77,11 +77,11 @@ export default function About() {
         <div className="mt-5 space-y-5 text-slate-600 dark:text-slate-300">
           <p>
             I built this website because I believe there is not enough exposure for many of the incredible experiences available in
-            coastal destinations. From sunset cruises and snorkeling trips to fishing charters, family activities, and hidden local
+            beach destinations. From sunset cruises and snorkeling trips to fishing charters, family activities, and hidden local
             gems, there is often far more available than most travelers ever realize.
           </p>
           <p>
-            My goal is to help make coastal trip planning easier by bringing activities, excursions, and trusted booking options into
+            My goal is to help make beach trip planning easier by bringing activities, excursions, and trusted booking options into
             one place. I want Shoreline Concierge to help people discover options they may not have known existed and make the process
             feel faster, clearer, and less confusing.
           </p>
@@ -117,7 +117,13 @@ export default function About() {
         </div>
         <div className="mt-6 flex flex-wrap gap-4 text-sm">
           <Link href="/" className="font-medium text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-300">
-            Start searching coastal activities
+            Start searching beach activities
+          </Link>
+          <Link href="/cruise-excursions" className="font-medium text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-300">
+            Browse cruise excursions
+          </Link>
+          <Link href="/contact" className="font-medium text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-300">
+            Contact Shoreline Concierge
           </Link>
           <Link href="/affiliate" className="font-medium text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-300">
             Read our affiliate disclosure

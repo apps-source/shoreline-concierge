@@ -691,7 +691,7 @@ export default function PlannerHero({ destinations, featured }: PlannerHeroProps
             <h1 className="text-4xl sm:text-5xl xl:text-6xl font-semibold leading-tight text-white drop-shadow-md">Find Things to Do for Your Coastal Vacation</h1>
             <p className="text-lg font-medium text-emerald-100/95">Plan less. Experience more.</p>
             <p className="max-w-2xl text-lg text-emerald-50/90 leading-relaxed">
-              Search Shoreline Concierge to discover beach activities, excursions, tours, and trusted booking options for your next coastal trip.
+              Search Shoreline Concierge to discover beach activities, excursions, tours, and trusted booking options for your next beach trip.
             </p>
             <div className="flex flex-wrap gap-2 pt-1 text-xs text-emerald-50/90">
               {['Live results', 'Trusted partners', 'Top-rated experiences', 'Flexible booking on many options'].map((item) => (

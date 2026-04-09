@@ -8,11 +8,11 @@ import ServiceWorkerRegistrar from '../components/ServiceWorkerRegistrar'
 export const metadata: Metadata = {
   metadataBase: new URL('https://shorelineconcierge.travel'),
   title: {
-    default: 'Shoreline Concierge | Coastal Activities, Excursions, and Cruise-Friendly Things To Do',
+    default: 'Shoreline Concierge | Beach Activities, Excursions, and Cruise-Friendly Things To Do',
     template: '%s | Shoreline Concierge'
   },
   description:
-    'Search coastal activities, excursions, shore excursions, and trusted booking options for beach trips, cruise ports, and waterfront destinations.',
+    'Search beach activities, excursions, shore excursions, and trusted booking options for beach trips, cruise ports, and waterfront destinations.',
   alternates: {
     canonical: '/'
   },
@@ -20,15 +20,15 @@ export const metadata: Metadata = {
     siteName: 'Shoreline Concierge',
     locale: 'en_US',
     type: 'website',
-    title: 'Shoreline Concierge | Coastal Activities, Excursions, and Cruise-Friendly Things To Do',
+    title: 'Shoreline Concierge | Beach Activities, Excursions, and Cruise-Friendly Things To Do',
     description:
-      'Search coastal activities, excursions, shore excursions, and trusted booking options for beach trips, cruise ports, and waterfront destinations.'
+      'Search beach activities, excursions, shore excursions, and trusted booking options for beach trips, cruise ports, and waterfront destinations.'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shoreline Concierge | Coastal Activities, Excursions, and Cruise-Friendly Things To Do',
+    title: 'Shoreline Concierge | Beach Activities, Excursions, and Cruise-Friendly Things To Do',
     description:
-      'Search coastal activities, excursions, shore excursions, and trusted booking options for beach trips, cruise ports, and waterfront destinations.'
+      'Search beach activities, excursions, shore excursions, and trusted booking options for beach trips, cruise ports, and waterfront destinations.'
   }
 }
 

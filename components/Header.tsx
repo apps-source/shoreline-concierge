@@ -33,7 +33,9 @@ export default function Header(){
 
         <nav className="hidden md:flex items-center gap-6">
           <Link href="/" className="text-sm">Home</Link>
+          <Link href="/cruise-excursions" className="text-sm">Cruise Excursions</Link>
           <Link href="/about" className="text-sm">About</Link>
+          <Link href="/contact" className="text-sm">Contact</Link>
           <Link href="/affiliate" className="text-sm">Affiliate</Link>
         </nav>
 
@@ -49,7 +51,9 @@ export default function Header(){
         <div className="md:hidden border-t">
           <div className="container py-4 flex flex-col gap-3">
             <Link href="/" className="text-base">Home</Link>
+            <Link href="/cruise-excursions" className="text-base">Cruise Excursions</Link>
             <Link href="/about" className="text-base">About</Link>
+            <Link href="/contact" className="text-base">Contact</Link>
             <Link href="/affiliate" className="text-base">Affiliate</Link>
           </div>
         </div>

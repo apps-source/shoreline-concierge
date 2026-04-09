@@ -1,0 +1,26 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" fill="#102A43"/>
+  <rect y="405" width="1200" height="315" fill="url(#sea)"/>
+  <rect width="1200" height="416" fill="url(#sky)"/>
+  <circle cx="914" cy="113" r="41" fill="#FFE59E"/>
+  <path d="M0 484C102 453 204 450 326 472C435 491 530 529 646 529C762 529 843 494 958 476C1037 464 1128 466 1200 484V720H0V484Z" fill="#0C7B93"/>
+  <rect x="151" y="294" width="122" height="150" fill="#EAC086"/>
+  <rect x="276" y="274" width="76" height="170" fill="#D97D54"/>
+  <rect x="356" y="316" width="92" height="128" fill="#F4E3B2"/>
+  <rect x="451" y="254" width="104" height="190" fill="#8DB580"/>
+  <rect x="559" y="299" width="75" height="145" fill="#EB9F76"/>
+  <rect x="638" y="287" width="136" height="157" fill="#F2D492"/>
+  <rect x="777" y="329" width="103" height="115" fill="#CF6C4C"/>
+  <rect x="883" y="266" width="81" height="178" fill="#F6E8C3"/>
+  <rect x="968" y="311" width="135" height="133" fill="#A7C7E7"/>
+  <defs>
+    <linearGradient id="sky" x1="600" y1="0" x2="600" y2="416" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2A4D69"/>
+      <stop offset="1" stop-color="#89C2D9"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="600" y1="405" x2="600" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1496BB"/>
+      <stop offset="1" stop-color="#0A3D62"/>
+    </linearGradient>
+  </defs>
+</svg>

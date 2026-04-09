@@ -1,5 +1,7 @@
 import { getNormalizedExperiencesWithMeta } from '../../../../lib/viator/client'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(req: Request) {
   const startedAt = Date.now()
   try {

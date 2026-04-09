@@ -1,0 +1,26 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" fill="#0A3442"/>
+  <rect y="374" width="1200" height="346" fill="url(#water)"/>
+  <rect width="1200" height="386" fill="url(#sky)"/>
+  <circle cx="932" cy="120" r="42" fill="#FFEFAC"/>
+  <path d="M0 440C126 417 215 415 331 438C446 460 510 486 624 486C745 486 818 452 932 432C1026 415 1116 420 1200 439V720H0V440Z" fill="#1A879C"/>
+  <rect x="145" y="315" width="110" height="111" rx="10" fill="#F4B183"/>
+  <path d="M131 323L201 264L271 323H131Z" fill="#C25C36"/>
+  <rect x="284" y="335" width="123" height="91" rx="10" fill="#FFE4A3"/>
+  <path d="M270 343L346 279L421 343H270Z" fill="#1E6AA8"/>
+  <rect x="443" y="302" width="148" height="124" rx="10" fill="#FCF7F8"/>
+  <path d="M425 312L519 235L612 312H425Z" fill="#C74236"/>
+  <rect x="624" y="326" width="118" height="100" rx="10" fill="#D3F3EE"/>
+  <path d="M609 333L683 275L757 333H609Z" fill="#007991"/>
+  <path d="M780 430C818 360 866 321 927 321C990 321 1042 360 1088 430H780Z" fill="#207561"/>
+  <defs>
+    <linearGradient id="sky" x1="600" y1="0" x2="600" y2="386" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E6070"/>
+      <stop offset="1" stop-color="#66C7D1"/>
+    </linearGradient>
+    <linearGradient id="water" x1="600" y1="374" x2="600" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#18A8B8"/>
+      <stop offset="1" stop-color="#08485A"/>
+    </linearGradient>
+  </defs>
+</svg>

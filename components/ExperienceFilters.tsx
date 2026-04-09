@@ -33,13 +33,13 @@ export default function ExperienceFilters({ categories, destinations, selectedCa
     <div className="flex flex-col gap-3 rounded-2xl bg-white p-4 shadow-md ring-1 ring-slate-100 sm:flex-row sm:items-end sm:gap-4">
       {showCategoryFilter ? (
         <div className="w-full sm:w-64">
-          <label className="block text-sm font-semibold text-slate-800">Category</label>
+          <label className="block text-sm font-semibold text-slate-800">Experience type</label>
           <select
             value={selectedCategory ?? ''}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => update('category', e.target.value || undefined)}
             className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm shadow-sm focus:border-emerald-500 focus:outline-none"
           >
-            <option value="">All categories</option>
+            <option value="">All experience types</option>
             {categories.map(c => (
               <option key={c} value={c}>{c}</option>
             ))}
@@ -49,7 +49,7 @@ export default function ExperienceFilters({ categories, destinations, selectedCa
 
       {showDestinationFilter ? (
         <div className="w-full sm:w-64">
-          <label className="block text-sm font-semibold text-slate-800">Destination</label>
+          <label className="block text-sm font-semibold text-slate-800">Browse another destination</label>
           <select
             value={selectedDestination ?? ''}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => update('destination', e.target.value || undefined)}
@@ -77,7 +77,7 @@ export default function ExperienceFilters({ categories, destinations, selectedCa
             }}
             className="rounded-full border border-emerald-900/15 px-4 py-3 text-sm font-semibold text-emerald-900 transition hover:-translate-y-0.5 hover:shadow-md"
           >
-            Reset filters
+            Clear filters
           </button>
         </div>
       ) : null}

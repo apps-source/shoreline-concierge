@@ -13,19 +13,23 @@ export default function Footer(){
             height={82}
             className="h-12 w-[240px] object-cover object-left"
           />
-          <div className="text-sm text-slate-600 mt-3 max-w-sm">Find better coastal experiences faster, then book through trusted partners.</div>
+          <div className="text-sm text-slate-600 mt-3 max-w-sm">Find better beach experiences faster, then book through trusted partners.</div>
         </div>
 
         <div className="flex flex-col">
           <div className="font-medium">Pages</div>
           <Link href="/" className="text-sm mt-2">Home</Link>
+          <Link href="/cruise-excursions" className="text-sm mt-1">Cruise Excursions</Link>
           <Link href="/about" className="text-sm mt-1">About Shoreline</Link>
+          <Link href="/contact" className="text-sm mt-1">Contact</Link>
           <Link href="/affiliate" className="text-sm mt-1">Affiliate Disclosure</Link>
         </div>
 
         <div className="flex flex-col">
           <div className="font-medium">Contact</div>
-          <div className="text-sm mt-2 text-slate-600">Contact details coming soon</div>
+          <a href="mailto:contactus@shorelineconcierge.travel" className="text-sm mt-2 text-slate-600 hover:text-emerald-700">
+            contactus@shorelineconcierge.travel
+          </a>
           <div className="text-sm mt-1">© {new Date().getFullYear()} Shoreline Concierge</div>
         </div>
       </div>

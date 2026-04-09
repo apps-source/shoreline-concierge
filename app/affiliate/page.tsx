@@ -4,14 +4,14 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Affiliate Disclosure | Shoreline Concierge',
   description:
-    'Learn how Shoreline Concierge uses affiliate links for coastal activities, excursions, and cruise-friendly travel bookings at no extra cost to you.',
+    'Learn how Shoreline Concierge uses affiliate links for beach activities, excursions, and cruise-friendly travel bookings at no extra cost to you.',
   alternates: {
     canonical: '/affiliate'
   },
   openGraph: {
     title: 'Affiliate Disclosure | Shoreline Concierge',
     description:
-      'Learn how Shoreline Concierge uses affiliate links for coastal activities, excursions, and cruise-friendly travel bookings at no extra cost to you.',
+      'Learn how Shoreline Concierge uses affiliate links for beach activities, excursions, and cruise-friendly travel bookings at no extra cost to you.',
     url: '/affiliate',
     type: 'website'
   },
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Affiliate Disclosure | Shoreline Concierge',
     description:
-      'Learn how Shoreline Concierge uses affiliate links for coastal activities, excursions, and cruise-friendly travel bookings at no extra cost to you.'
+      'Learn how Shoreline Concierge uses affiliate links for beach activities, excursions, and cruise-friendly travel bookings at no extra cost to you.'
   }
 }
 
@@ -42,12 +42,12 @@ const sections = [
   {
     title: 'Why recommendations are included',
     body:
-      'The goal of Shoreline Concierge is to make coastal trip planning simpler by helping travelers discover tours, excursions, boat trips, and other things to do near beach destinations in a more organized and useful way.'
+      'The goal of Shoreline Concierge is to make beach trip planning simpler by helping travelers discover tours, excursions, boat trips, and other things to do near beach destinations in a more organized and useful way.'
   },
   {
     title: 'Questions or contact information',
     body:
-      'If you have questions about this disclosure or how the website works, Shoreline Concierge will publish direct contact information soon.'
+      'If you have questions about this disclosure or how the website works, you can reach Shoreline Concierge at contactus@shorelineconcierge.travel.'
   }
 ]
 
@@ -75,12 +75,17 @@ export default function AffiliatePage() {
         <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">Helpful links</h2>
         <div className="mt-4 flex flex-wrap gap-4 text-sm">
           <Link href="/" className="font-medium text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-300">
-            Start searching coastal activities
+            Start searching beach activities
+          </Link>
+          <Link href="/cruise-excursions" className="font-medium text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-300">
+            Browse cruise excursions
           </Link>
           <Link href="/about" className="font-medium text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-300">
             Learn more about Shoreline Concierge
           </Link>
-          <span className="font-medium text-slate-500 dark:text-slate-400">Contact information coming soon</span>
+          <Link href="/contact" className="font-medium text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-300">
+            Contact Shoreline Concierge
+          </Link>
         </div>
       </section>
     </div>

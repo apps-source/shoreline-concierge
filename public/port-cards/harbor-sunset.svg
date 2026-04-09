@@ -1,0 +1,20 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" fill="#102A43"/>
+  <rect width="1200" height="720" fill="url(#sunset)"/>
+  <circle cx="823" cy="177" r="82" fill="#FFD27F"/>
+  <path d="M0 455C124 438 233 446 329 466C433 487 502 516 610 516C728 516 804 482 914 463C1001 448 1103 448 1200 468V720H0V455Z" fill="#1B4965" fill-opacity=".6"/>
+  <path d="M0 529C101 507 215 514 331 548C423 576 527 604 645 602C761 599 838 566 939 552C1023 540 1110 543 1200 563V720H0V529Z" fill="#0A415A"/>
+  <path d="M0 654C96 634 183 633 280 649C395 668 494 710 632 708C760 705 846 670 960 655C1038 645 1115 649 1200 668V720H0V654Z" fill="#082D40"/>
+  <rect x="851" y="301" width="16" height="127" fill="#2D3142"/>
+  <path d="M867 312L1041 361H867V312Z" fill="#F0F4EF"/>
+  <path d="M862 360H1100L1060 404H900L862 360Z" fill="#78290F"/>
+  <path d="M208 407H548L526 450H193L208 407Z" fill="#845EC2"/>
+  <rect x="235" y="372" width="251" height="35" fill="#A05CFF"/>
+  <defs>
+    <linearGradient id="sunset" x1="600" y1="0" x2="600" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B2A49"/>
+      <stop offset=".45" stop-color="#FD8D62"/>
+      <stop offset="1" stop-color="#082D40"/>
+    </linearGradient>
+  </defs>
+</svg>

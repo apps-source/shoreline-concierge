@@ -221,6 +221,27 @@ type SandboxStrategy = {
   contentType?: string
 }
 
+type ViatorEnvironment = {
+  source: 'production' | 'sandbox'
+  apiKey?: string
+  productsEndpoint: string
+  freetextEndpoint: string
+}
+
+const PRODUCTION_ENV: ViatorEnvironment = {
+  source: 'production',
+  apiKey: process.env.VIATOR_API_KEY,
+  productsEndpoint: PRODUCTION_PRODUCTS_SEARCH_ENDPOINT,
+  freetextEndpoint: PRODUCTION_FREETEXT_SEARCH_ENDPOINT
+}
+
+const SANDBOX_ENV: ViatorEnvironment = {
+  source: 'sandbox',
+  apiKey: process.env.VIATOR_SANDBOX_KEY,
+  productsEndpoint: SANDBOX_PRODUCTS_SEARCH_ENDPOINT,
+  freetextEndpoint: SANDBOX_FREETEXT_SEARCH_ENDPOINT
+}
+
 function safePreview(obj: any) {
   try {
     return JSON.stringify(obj).slice(0, 1000)
@@ -321,21 +342,51 @@ function extractProductsFromFreetext(resp: any): RawViatorProduct[] {
   return []
 }
 
-async function performSandboxWithStrategies(strategies: SandboxStrategy[], cacheTag: string): Promise<{ products: RawViatorProduct[] | null; meta: Partial<ViatorDebugMeta> }> {
-  const key = process.env.VIATOR_SANDBOX_KEY
+async function performViatorWithStrategies(
+  env: ViatorEnvironment,
+  strategies: SandboxStrategy[],
+  cacheTag: string
+): Promise<{ products: RawViatorProduct[] | null; meta: Partial<ViatorDebugMeta> }> {
+  const key = env.apiKey
   if (!key) {
-    console.warn('[viator] VIATOR_SANDBOX_KEY missing; falling back to mock data')
-    return { products: null, meta: { source: 'mock', endpointUsed: strategies[0]?.endpoint ?? null, fallbackReason: 'sandbox key missing', method: 'POST', methodUsed: 'POST' } }
+    console.warn(`[viator] ${env.source} API key missing; falling back`)
+    return {
+      products: null,
+      meta: {
+        source: 'mock',
+        endpointUsed: strategies[0]?.endpoint ?? null,
+        fallbackReason: `${env.source} key missing`,
+        method: 'POST',
+        methodUsed: 'POST'
+      }
+    }
   }
 
-  let lastMeta: Partial<ViatorDebugMeta> = { source: 'sandbox', endpointUsed: null, strategyUsed: null, fallbackReason: 'unattempted', method: 'POST', methodUsed: 'POST' }
+  let lastMeta: Partial<ViatorDebugMeta> = {
+    source: env.source,
+    endpointUsed: null,
+    strategyUsed: null,
+    fallbackReason: 'unattempted',
+    method: 'POST',
+    methodUsed: 'POST'
+  }
 
   for (const strat of strategies) {
     const endpointWithCampaign = withCampaignValue(strat.endpoint)
     const cacheId = cacheKey(`${endpointWithCampaign}:${cacheTag}:${strat.name}`, strat.body)
     const cached = getCached(cacheId)
     if (cached) {
-      return { products: cached.products, meta: { ...cached.meta, source: 'sandbox', strategyUsed: cached.meta.strategyUsed ?? strat.name, fallbackReason: 'cache-hit', method: strat.method, methodUsed: strat.method } }
+      return {
+        products: cached.products,
+        meta: {
+          ...cached.meta,
+          source: env.source,
+          strategyUsed: cached.meta.strategyUsed ?? strat.name,
+          fallbackReason: 'cache-hit',
+          method: strat.method,
+          methodUsed: strat.method
+        }
+      }
     }
 
     const headers = {
@@ -361,7 +412,7 @@ async function performSandboxWithStrategies(strategies: SandboxStrategy[], cache
 
       if (!res.ok) {
         lastMeta = {
-          source: 'sandbox',
+          source: env.source,
           endpointUsed: endpointWithCampaign,
           strategyUsed: strat.name,
           statusCode: res.status,
@@ -373,7 +424,7 @@ async function performSandboxWithStrategies(strategies: SandboxStrategy[], cache
           requestHeadersPreview,
           responseBodyPreview
         }
-        console.warn('[viator] Sandbox search failed', res.status, res.statusText, strat.name)
+        console.warn(`[viator] ${env.source} search failed`, res.status, res.statusText, strat.name)
         continue
       }
 
@@ -389,7 +440,7 @@ async function performSandboxWithStrategies(strategies: SandboxStrategy[], cache
         const requestedStart = Number(strat?.body?.pagination?.start || 1)
         const isPaginatedFollowUp = Number.isFinite(requestedStart) && requestedStart > 1
         lastMeta = {
-          source: 'sandbox',
+          source: env.source,
           endpointUsed: endpointWithCampaign,
           strategyUsed: strat.name,
           statusCode: res.status,
@@ -405,15 +456,15 @@ async function performSandboxWithStrategies(strategies: SandboxStrategy[], cache
         }
         console.warn(
           isPaginatedFollowUp
-            ? '[viator] Sandbox search returned no paginated results; treating as exhausted page'
-            : '[viator] Sandbox search empty/invalid; falling back to next strategy',
+            ? `[viator] ${env.source} search returned no paginated results; treating as exhausted page`
+            : `[viator] ${env.source} search empty/invalid; falling back to next strategy`,
           strat.name
         )
         continue
       }
 
       setCached(cacheId, products, {
-        source: 'sandbox',
+        source: env.source,
         endpointUsed: endpointWithCampaign,
         strategyUsed: strat.name,
         statusCode: res.status,
@@ -425,11 +476,11 @@ async function performSandboxWithStrategies(strategies: SandboxStrategy[], cache
         requestHeadersPreview,
         responseBodyPreview
       })
-      console.info('[viator] Using sandbox search data via strategy', strat.name)
+      console.info(`[viator] Using ${env.source} search data via strategy`, strat.name)
       return {
         products,
         meta: {
-          source: 'sandbox',
+          source: env.source,
           endpointUsed: endpointWithCampaign,
           strategyUsed: strat.name,
           statusCode: res.status,
@@ -447,7 +498,7 @@ async function performSandboxWithStrategies(strategies: SandboxStrategy[], cache
       }
     } catch (err) {
       lastMeta = {
-        source: 'sandbox',
+        source: env.source,
         endpointUsed: endpointWithCampaign,
         strategyUsed: strat.name,
         fallbackReason: `exception (${strat.name})`,
@@ -457,7 +508,7 @@ async function performSandboxWithStrategies(strategies: SandboxStrategy[], cache
         requestHeadersPreview,
         responseBodyPreview: lastMeta.responseBodyPreview ?? null
       }
-      console.warn('[viator] Sandbox search error; falling back to next strategy', strat.name, err)
+      console.warn(`[viator] ${env.source} search error; falling back to next strategy`, strat.name, err)
       continue
     }
   }
@@ -465,10 +516,10 @@ async function performSandboxWithStrategies(strategies: SandboxStrategy[], cache
   return { products: null, meta: lastMeta }
 }
 
-async function performDirectFreeTextSearch(params: SearchArgs): Promise<FreeTextResult> {
-  const key = process.env.VIATOR_SANDBOX_KEY
+async function performDirectFreeTextSearch(env: ViatorEnvironment, params: SearchArgs): Promise<FreeTextResult> {
+  const key = env.apiKey
   const body = buildFreeTextSearchPayload(params)
-  const endpointWithCampaign = withCampaignValue(SANDBOX_FREETEXT_SEARCH_ENDPOINT)
+  const endpointWithCampaign = withCampaignValue(env.freetextEndpoint)
 
   if (!key) {
     return {
@@ -477,7 +528,7 @@ async function performDirectFreeTextSearch(params: SearchArgs): Promise<FreeText
       meta: {
         source: 'mock',
         endpointUsed: endpointWithCampaign,
-        fallbackReason: 'sandbox key missing',
+        fallbackReason: `${env.source} key missing`,
         method: 'POST',
         methodUsed: 'POST'
       }
@@ -495,7 +546,7 @@ async function performDirectFreeTextSearch(params: SearchArgs): Promise<FreeText
   const requestHeadersPreview = redactHeaders(headers)
 
   try {
-    console.info('[viator] freetext request', { endpoint: endpointWithCampaign, body })
+    console.info('[viator] freetext request', { source: env.source, endpoint: endpointWithCampaign, body })
     const res = await fetch(endpointWithCampaign, {
       method: 'POST',
       headers,
@@ -517,7 +568,7 @@ async function performDirectFreeTextSearch(params: SearchArgs): Promise<FreeText
     const responseBodyPreview = responseText.slice(0, 1000)
 
     const meta: Partial<ViatorDebugMeta> = {
-      source: 'sandbox',
+      source: env.source,
       endpointUsed: endpointWithCampaign,
       statusCode: res.status,
       responseStatusText: res.statusText,
@@ -550,7 +601,7 @@ async function performDirectFreeTextSearch(params: SearchArgs): Promise<FreeText
       products: null,
       resolution: undefined,
       meta: {
-        source: 'sandbox',
+        source: env.source,
         endpointUsed: endpointWithCampaign,
         fallbackReason: 'exception freetext',
         resultCount: 0,
@@ -561,15 +612,6 @@ async function performDirectFreeTextSearch(params: SearchArgs): Promise<FreeText
       }
     }
   }
-}
-
-// Placeholder for future production search calls. Keep server-only.
-async function performProductionPost(endpoint: string, body: any): Promise<{ products: RawViatorProduct[] | null; meta: Partial<ViatorDebugMeta> }> {
-  const key = process.env.VIATOR_API_KEY
-  const endpointWithCampaign = withCampaignValue(endpoint)
-  if (!key) return { products: null, meta: { source: 'mock', endpointUsed: endpointWithCampaign, fallbackReason: 'production key missing', method: 'POST' } }
-  // TODO: Implement production search when ready.
-  return { products: null, meta: { source: 'production', endpointUsed: endpointWithCampaign, fallbackReason: 'not implemented', method: 'POST' } }
 }
 
 export async function searchViatorProducts(params: SearchArgs): Promise<{ products: RawViatorProduct[] | null; meta: Partial<ViatorDebugMeta> }> {
@@ -587,30 +629,65 @@ export async function searchViatorProducts(params: SearchArgs): Promise<{ produc
     return { products: null, meta: { source: 'mock', fallbackReason: 'destination missing for products/search', method: 'POST', methodUsed: 'POST', endpointUsed: null, defaultDestinationUsed } }
   }
 
-  const strategies: SandboxStrategy[] = [
+  const productionStrategies: SandboxStrategy[] = [
+    { name: 'products-structured', endpoint: PRODUCTION_PRODUCTS_SEARCH_ENDPOINT, method: 'POST', body: structured }
+  ]
+  const sandboxStrategies: SandboxStrategy[] = [
     { name: 'products-structured', endpoint: SANDBOX_PRODUCTS_SEARCH_ENDPOINT, method: 'POST', body: structured }
   ]
-  const sandbox = await performSandboxWithStrategies(strategies, 'products')
+
+  const production = await performViatorWithStrategies(PRODUCTION_ENV, productionStrategies, 'products')
+  if (production.products) return production
+  if (production.meta.pageExhausted) return { products: [], meta: production.meta }
+
+  const sandbox = await performViatorWithStrategies(SANDBOX_ENV, sandboxStrategies, 'products')
   if (sandbox.products) return sandbox
   if (sandbox.meta.pageExhausted) return { products: [], meta: sandbox.meta }
-  const prod = await performProductionPost(PRODUCTION_PRODUCTS_SEARCH_ENDPOINT, structured)
-  if (prod.products) return prod
-  return { products: null, meta: { source: 'mock', fallbackReason: sandbox.meta.fallbackReason || prod.meta.fallbackReason || 'all fetches failed', method: 'POST', methodUsed: 'POST', endpointUsed: sandbox.meta.endpointUsed ?? prod.meta.endpointUsed ?? null, requestBodyPreview: safePreview(structured), defaultDestinationUsed } as any }
+
+  return {
+    products: null,
+    meta: {
+      source: 'mock',
+      fallbackReason: production.meta.fallbackReason || sandbox.meta.fallbackReason || 'all fetches failed',
+      method: 'POST',
+      methodUsed: 'POST',
+      endpointUsed: production.meta.endpointUsed ?? sandbox.meta.endpointUsed ?? null,
+      requestBodyPreview: safePreview(structured),
+      defaultDestinationUsed
+    } as any
+  }
 }
 
 export async function searchViatorFreeText(params: SearchArgs): Promise<FreeTextResult> {
-  const direct = await performDirectFreeTextSearch(params)
-  if (direct.products || direct.resolution) return direct
+  const directProduction = await performDirectFreeTextSearch(PRODUCTION_ENV, params)
+  if (directProduction.products || directProduction.resolution) return directProduction
 
   const structured = buildFreeTextSearchPayload(params)
-  const strategies: SandboxStrategy[] = [
+  const productionStrategies: SandboxStrategy[] = [
+    { name: 'freetext-structured', endpoint: PRODUCTION_FREETEXT_SEARCH_ENDPOINT, method: 'POST', body: structured }
+  ]
+  const production = await performViatorWithStrategies(PRODUCTION_ENV, productionStrategies, 'freetext')
+  if (production.products) return { products: production.products, meta: production.meta, resolution: undefined }
+
+  const directSandbox = await performDirectFreeTextSearch(SANDBOX_ENV, params)
+  if (directSandbox.products || directSandbox.resolution) return directSandbox
+
+  const sandboxStrategies: SandboxStrategy[] = [
     { name: 'freetext-structured', endpoint: SANDBOX_FREETEXT_SEARCH_ENDPOINT, method: 'POST', body: structured }
   ]
-  const sandbox = await performSandboxWithStrategies(strategies, 'freetext')
+  const sandbox = await performViatorWithStrategies(SANDBOX_ENV, sandboxStrategies, 'freetext')
   if (sandbox.products) return { products: sandbox.products, meta: sandbox.meta, resolution: undefined }
-  const prod = await performProductionPost(PRODUCTION_FREETEXT_SEARCH_ENDPOINT, structured)
-  if (prod.products) return { products: prod.products, meta: prod.meta, resolution: undefined }
-  return { products: null, meta: { source: 'mock', fallbackReason: sandbox.meta.fallbackReason || prod.meta.fallbackReason || 'all fetches failed', method: 'POST', methodUsed: 'POST' }, resolution: undefined }
+
+  return {
+    products: null,
+    meta: {
+      source: 'mock',
+      fallbackReason: production.meta.fallbackReason || sandbox.meta.fallbackReason || 'all fetches failed',
+      method: 'POST',
+      methodUsed: 'POST'
+    },
+    resolution: undefined
+  }
 }
 
 export async function getFeaturedViatorProducts(params: SearchArgs): Promise<{ products: RawViatorProduct[] | null; meta: Partial<ViatorDebugMeta> }> {

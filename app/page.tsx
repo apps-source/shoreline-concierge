@@ -7,24 +7,25 @@ import { homeDestinationGroups } from '../data/homeDestinations'
 import { featuredActivityTypes, homeFaqs, howItWorksSteps } from '../data/site-content'
 
 export const metadata: Metadata = {
-  title: 'Things to Do for Beach Trips, Shore Excursions, and Cruise Stops',
+  title: 'Shoreline Concierge — Beach activities & shore excursions',
   description:
-    'Find tours, excursions, shore excursions, and beach activities for your next beach trip or cruise stop. Search destinations, compare options, and book through trusted partners.',
+    'Discover beach activities, shore excursions, and cruise-stop experiences. Search destinations, compare options, and book through trusted partners.',
   alternates: {
     canonical: '/'
   },
   openGraph: {
-    title: 'Things to Do for Beach Trips, Shore Excursions, and Cruise Stops',
+    title: 'Shoreline Concierge — Beach activities & shore excursions',
     description:
-      'Find tours, excursions, shore excursions, and beach activities for your next beach trip or cruise stop. Search destinations, compare options, and book through trusted partners.',
+      'Discover beach activities, shore excursions, and cruise-stop experiences. Search destinations, compare options, and book through trusted partners.',
     url: '/',
-    type: 'website'
+    type: 'website',
+    images: [{ url: '/brand/Shoreline-main-logo.png', width: 1200, height: 630 }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Things to Do for Beach Trips, Shore Excursions, and Cruise Stops',
+    title: 'Shoreline Concierge — Beach activities & shore excursions',
     description:
-      'Find tours, excursions, shore excursions, and beach activities for your next beach trip or cruise stop. Search destinations, compare options, and book through trusted partners.'
+      'Discover beach activities, shore excursions, and cruise-stop experiences. Search destinations, compare options, and book through trusted partners.'
   }
 }
 

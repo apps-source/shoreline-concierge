@@ -4,24 +4,25 @@ import DestinationLinkCard from '../../components/DestinationLinkCard'
 import { cruisePortGroups } from '../../data/cruisePorts'
 
 export const metadata: Metadata = {
-  title: 'Cruise Excursions for Popular Ports of Call',
+  title: 'Cruise Excursions & Shore Experiences — Ports of Call',
   description:
-    'Find top-rated shore excursions, beach days, snorkeling trips, sightseeing tours, and easy port-day experiences for the cruise stops travelers book most.',
+    'Find shore excursions, beach days, snorkeling trips, and sightseeing tours for popular cruise ports. Compare options for easy port days.',
   alternates: {
     canonical: '/cruise-excursions'
   },
   openGraph: {
-    title: 'Cruise Excursions for Popular Ports of Call',
+    title: 'Cruise Excursions & Shore Experiences — Ports of Call',
     description:
-      'Find top-rated shore excursions, beach days, snorkeling trips, sightseeing tours, and easy port-day experiences for the cruise stops travelers book most.',
+      'Find shore excursions, beach days, snorkeling trips, and sightseeing tours for popular cruise ports. Compare options for easy port days.',
     url: '/cruise-excursions',
-    type: 'website'
+    type: 'website',
+    images: [{ url: '/brand/Shoreline-main-logo.png', width: 1200, height: 630 }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cruise Excursions for Popular Ports of Call',
+    title: 'Cruise Excursions & Shore Experiences — Ports of Call',
     description:
-      'Find top-rated shore excursions, beach days, snorkeling trips, sightseeing tours, and easy port-day experiences for the cruise stops travelers book most.'
+      'Find shore excursions, beach days, snorkeling trips, and sightseeing tours for popular cruise ports. Compare options for easy port days.'
   }
 }
 
@@ -83,6 +84,11 @@ export default function CruiseExcursionsPage() {
         <p className="mt-6 text-xs leading-5 text-slate-500 dark:text-slate-400">
           Cruise port photography is pulled from openly licensed Wikimedia Commons images when available.
         </p>
+      </section>
+
+      <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+        <h3 className="text-lg font-semibold">Need help planning a port day?</h3>
+        <p className="mt-2 text-sm text-slate-700">Email <a className="text-emerald-700 font-medium" href="mailto:contactus@shorelineconcierge.travel">contactus@shorelineconcierge.travel</a> for quick port-day planning help.</p>
       </section>
     </div>
   )

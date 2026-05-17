@@ -2,24 +2,25 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About Shoreline Concierge | Beach Trips, Cruise Excursions, and Better Travel Planning',
+  title: 'About Shoreline Concierge — Beach trips & excursions',
   description:
-    'Learn why Shoreline Concierge was created and how it helps travelers find beach activities, excursions, cruise-friendly tours, and memorable beach experiences more easily.',
+    'Learn how Shoreline Concierge helps travelers find beach activities, excursions, and cruise-friendly tours to make beach trips easier and more fun.',
   alternates: {
     canonical: '/about'
   },
   openGraph: {
-    title: 'About Shoreline Concierge | Beach Trips, Cruise Excursions, and Better Travel Planning',
+    title: 'About Shoreline Concierge — Beach trips & excursions',
     description:
-      'Learn why Shoreline Concierge was created and how it helps travelers find beach activities, excursions, cruise-friendly tours, and memorable beach experiences more easily.',
+      'Learn how Shoreline Concierge helps travelers find beach activities, excursions, and cruise-friendly tours to make beach trips easier and more fun.',
     url: '/about',
-    type: 'website'
+    type: 'website',
+    images: [{ url: '/brand/Shoreline-main-logo.png', width: 1200, height: 630 }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Shoreline Concierge | Beach Trips, Cruise Excursions, and Better Travel Planning',
+    title: 'About Shoreline Concierge — Beach trips & excursions',
     description:
-      'Learn why Shoreline Concierge was created and how it helps travelers find beach activities, excursions, cruise-friendly tours, and memorable beach experiences more easily.'
+      'Learn how Shoreline Concierge helps travelers find beach activities, excursions, and cruise-friendly tours to make beach trips easier and more fun.'
   }
 }
 
@@ -129,6 +130,11 @@ export default function About() {
             Read our affiliate disclosure
           </Link>
         </div>
+      </section>
+
+      <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+        <h3 className="text-lg font-semibold">Have a question or partnership idea?</h3>
+        <p className="mt-2 text-sm text-slate-700">For press, partnerships, or help planning beach trips, email <a className="text-emerald-700 font-medium" href="mailto:contactus@shorelineconcierge.travel">contactus@shorelineconcierge.travel</a>.</p>
       </section>
     </div>
   )

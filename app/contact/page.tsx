@@ -1,24 +1,25 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact Shoreline Concierge',
+  title: 'Contact Shoreline Concierge — Beach trip support',
   description:
-    'Questions, partnership inquiries, or help planning your beach getaway? Contact Shoreline Concierge for general questions, business inquiries, and site support.',
+    'Questions, partnership inquiries, or help planning your beach getaway? Email Shoreline Concierge for fast help and booking guidance.',
   alternates: {
     canonical: '/contact'
   },
   openGraph: {
-    title: 'Contact Shoreline Concierge',
+    title: 'Contact Shoreline Concierge — Beach trip support',
     description:
-      'Questions, partnership inquiries, or help planning your beach getaway? Contact Shoreline Concierge for general questions, business inquiries, and site support.',
+      'Questions, partnership inquiries, or help planning your beach getaway? Email Shoreline Concierge for fast help and booking guidance.',
     url: '/contact',
-    type: 'website'
+    type: 'website',
+    images: [{ url: '/brand/Shoreline-main-logo.png', width: 1200, height: 630 }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact Shoreline Concierge',
+    title: 'Contact Shoreline Concierge — Beach trip support',
     description:
-      'Questions, partnership inquiries, or help planning your beach getaway? Contact Shoreline Concierge for general questions, business inquiries, and site support.'
+      'Questions, partnership inquiries, or help planning your beach getaway? Email Shoreline Concierge for fast help and booking guidance.'
   }
 }
 
@@ -34,7 +35,7 @@ export default function Contact() {
     <div className="space-y-8">
       <section className="rounded-3xl bg-gradient-to-br from-ocean-50 via-white to-sand-50 p-8 shadow-sm ring-1 ring-emerald-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 dark:ring-white/10">
         <p className="text-sm uppercase tracking-wide text-emerald-800 dark:text-emerald-300">Contact Shoreline Concierge</p>
-        <h1 className="mt-2 text-4xl font-semibold text-slate-900 dark:text-white">Contact Shoreline Concierge</h1>
+  <h1 className="mt-2 text-4xl font-semibold text-slate-900 dark:text-white">Contact Shoreline Concierge</h1>
         <p className="mt-4 max-w-3xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">
           Questions, partnership inquiries, or need help planning your beach getaway? We&apos;d love to hear from you.
         </p>

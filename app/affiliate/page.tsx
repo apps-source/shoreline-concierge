@@ -2,24 +2,25 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Affiliate Disclosure | Shoreline Concierge',
+  title: 'Affiliate Disclosure — Shoreline Concierge',
   description:
-    'Learn how Shoreline Concierge uses affiliate links for beach activities, excursions, and cruise-friendly travel bookings at no extra cost to you.',
+    'Shoreline Concierge uses affiliate links for beach activities and shore excursions. Learn how affiliate bookings support the site at no extra cost.',
   alternates: {
     canonical: '/affiliate'
   },
   openGraph: {
-    title: 'Affiliate Disclosure | Shoreline Concierge',
+    title: 'Affiliate Disclosure — Shoreline Concierge',
     description:
-      'Learn how Shoreline Concierge uses affiliate links for beach activities, excursions, and cruise-friendly travel bookings at no extra cost to you.',
+      'Shoreline Concierge uses affiliate links for beach activities and shore excursions. Learn how affiliate bookings support the site at no extra cost.',
     url: '/affiliate',
-    type: 'website'
+    type: 'website',
+    images: [{ url: '/brand/Shoreline-main-logo.png', width: 1200, height: 630 }]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Affiliate Disclosure | Shoreline Concierge',
+    title: 'Affiliate Disclosure — Shoreline Concierge',
     description:
-      'Learn how Shoreline Concierge uses affiliate links for beach activities, excursions, and cruise-friendly travel bookings at no extra cost to you.'
+      'Shoreline Concierge uses affiliate links for beach activities and shore excursions. Learn how affiliate bookings support the site at no extra cost.'
   }
 }
 
@@ -87,6 +88,11 @@ export default function AffiliatePage() {
             Contact Shoreline Concierge
           </Link>
         </div>
+      </section>
+
+      <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+        <h3 className="text-lg font-semibold">Questions about affiliate links?</h3>
+        <p className="mt-2 text-sm text-slate-700">Email <a className="text-emerald-700 font-medium" href="mailto:contactus@shorelineconcierge.travel">contactus@shorelineconcierge.travel</a> and we&rsquo;ll explain how partnerships work.</p>
       </section>
     </div>
   )

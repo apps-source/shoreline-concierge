@@ -23,6 +23,8 @@ export default function Footer(){
           <Link href="/about" className="text-sm mt-1">About Shoreline</Link>
           <Link href="/contact" className="text-sm mt-1">Contact</Link>
           <Link href="/affiliate" className="text-sm mt-1">Affiliate Disclosure</Link>
+          <Link href="/privacy" className="text-sm mt-1">Privacy</Link>
+          <Link href="/terms" className="text-sm mt-1">Terms</Link>
         </div>
 
         <div className="flex flex-col">
